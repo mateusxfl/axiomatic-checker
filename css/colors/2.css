@@ -1,0 +1,28 @@
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00ff2a, #0011ff);
+}
+
+.container-contact100, .lateral-menu{
+    background: #a64bf4;
+    background: -webkit-linear-gradient(45deg, #00ff2a, #0011ff);
+    background: -o-linear-gradient(45deg, #00ff2a, #0011ff);
+    background: -moz-linear-gradient(45deg, #00ff2a, #0011ff);
+    background: linear-gradient(45deg, #00ff2a, #0011ff);
+}
+
+.contact100-form-bgbtn {
+    background: #a64bf4;
+    background: -webkit-linear-gradient(left, #00ff2a, #0011ff, #00ff2a, #0011ff);
+    background: -o-linear-gradient(left, #00ff2a, #0011ff, #00ff2a, #0011ff);
+    background: -moz-linear-gradient(left, #00ff2a, #0011ff, #00ff2a, #0011ff);
+    background: linear-gradient(left, #00ff2a, #0011ff, #00ff2a, #0011ff);
+}
+
+.select2-container .select2-results__option[aria-selected="true"], .select2-container .select2-results__option--highlighted[aria-selected]{
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #00ff2a, #0011ff);
+    background: -o-linear-gradient(right, #00ff2a, #0011ff);
+    background: -moz-linear-gradient(right, #00ff2a, #0011ff);
+    background: linear-gradient(right, #00ff2a, #0011ff);
+    color: white;
+}

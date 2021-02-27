@@ -1,0 +1,28 @@
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #d3001c, #73ff00);
+}
+
+.container-contact100, .lateral-menu{
+    background: #a64bf4;
+    background: -webkit-linear-gradient(45deg, #d3001c, #73ff00);
+    background: -o-linear-gradient(45deg, #d3001c, #73ff00);
+    background: -moz-linear-gradient(45deg, #d3001c, #73ff00);
+    background: linear-gradient(45deg, #d3001c, #73ff00);
+}
+
+.contact100-form-bgbtn {
+    background: #a64bf4;
+    background: -webkit-linear-gradient(left, #d3001c, #73ff00, #d3001c, #73ff00);
+    background: -o-linear-gradient(left, #d3001c, #73ff00, #d3001c, #73ff00);
+    background: -moz-linear-gradient(left, #d3001c, #73ff00, #d3001c, #73ff00);
+    background: linear-gradient(left, #d3001c, #73ff00, #d3001c, #73ff00);
+}
+
+.select2-container .select2-results__option[aria-selected="true"], .select2-container .select2-results__option--highlighted[aria-selected]{
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #d3001c, #73ff00);
+    background: -o-linear-gradient(right, #d3001c, #73ff00);
+    background: -moz-linear-gradient(right, #d3001c, #73ff00);
+    background: linear-gradient(right, #d3001c, #73ff00);
+    color: white;
+}
