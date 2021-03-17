@@ -1,15 +1,29 @@
+// Armazerna a cor do tema no localStorage, para sempre ficar ativo de acordo com quem o aplicou.
 var myColor = localStorage.getItem("myColor");
+
+// Armazena o conteudo da div box, para caso o usuário precise voltar a página, a mesma estar preenchida.
 var myBox = sessionStorage.getItem("myBox");
+
+/**
+ * Verifica se ja existe uma linha definida (para caso o myBox seja usado, ao adicionar uma linha, a 
+ * mesma começar a partir de onde parou).
+ */
 var myLine = sessionStorage.getItem("myLine");
 
+// Se não há uma cor definida é setado o tema padrão.
 if(myColor != null){
     document.getElementById('theme').setAttribute('href', 'css/colors/'+myColor+'.css');
 }else{
     document.getElementById('theme').setAttribute('href', 'css/colors/7.css');
 }
 
+// Captura os 10 últimos digitos da url.
 var page = window.location.href.substr(-10)
 
+/**
+ * Se a página está no index, e my Box tem conteúdo, implica que ele voltou a página, entao a div box
+ * é preenchida novamente com o conteudo de myBox.
+ */
 if(myBox != null && page != "result.php"){
 
     document.getElementsByClassName('box')[0].innerHTML = myBox;
@@ -23,20 +37,27 @@ if(myBox != null && page != "result.php"){
 
 }
 
+// Seta o valor da linha = myLine, caso não exista é setado como 1.
 if(myLine != null){
     line = myLine;
 }else{
     line = 1;
 }
 
-function stateCapture(){ // OK
+// Captura o estado do formulário ao enviar a página.
+function stateCapture(){ 
+
+    // myBox recebe todo o conteudo da div box.
     myBox = document.getElementsByClassName("box")[0].innerHTML;
 
+    // MyBox e MyLine são armazenados no sessionStorage.
     sessionStorage.setItem("myBox", myBox);
     sessionStorage.setItem("myLine", line);
+
 }
 
-function addLine(){ // OK
+// Adiciona uma linha na div box.
+function addLine(){
 
     $('.box').append(
         '<div id="sequent-line-'+line+'">'
@@ -88,7 +109,11 @@ function addLine(){ // OK
     
 }
 
-function addOperationData(operation, line){ // OK
+/**
+ * Adiciona os inputs relativos ao dados necessarios para determinada operação, exemplo: para axiomas
+ * é adicionado os inputs p,q; já para o modus ponnes é adicionado os inputs line 1 e 2.
+ */
+function addOperationData(operation, line){ 
 
     $('#operation-line-'+line).empty();
     $('#sub-operation-line-'+line).empty();
@@ -238,7 +263,8 @@ function addOperationData(operation, line){ // OK
     
 }
 
-function changeAxiom(axiom, line){ // OK
+// Ao mudar o valor do select que contem os 10 axiomas, os inputs relativos a p, q, r são modificados.
+function changeAxiom(axiom, line){
 
     $('#operation-data-line-'+line).empty();
 
@@ -317,7 +343,8 @@ function changeAxiom(axiom, line){ // OK
 
 }
 
-function deleteLine(line){ // OK
+// Deleta uma linha do formulário, realocando todas as suas posteriores.
+function deleteLine(line){ 
     
     $('#sequent-line-'+line).remove();
 
@@ -337,7 +364,7 @@ function deleteLine(line){ // OK
         document.getElementById('sub-operation-line-'+i).setAttribute('id', 'sub-operation-line-'+(i - 1));
         document.getElementById('operation-data-line-'+i).setAttribute('id', 'operation-data-line-'+(i - 1));
 
-        lengthClass = document.getElementsByClassName('data-line-'+i).length
+        var lengthClass = document.getElementsByClassName('data-line-'+i).length
         
         if(lengthClass != 0){
             for ( var j = 0 ; j < lengthClass ; j++ ){
@@ -351,22 +378,6 @@ function deleteLine(line){ // OK
             document.getElementById('select-axiom-line-'+i).setAttribute('name', 'sub-operation['+((i - 1)-1)+'][]');
             document.getElementById('select-axiom-line-'+i).setAttribute('id', 'select-axiom-line-'+(i - 1));
         }
-        
-        // NAME sequent[]
-        // NAME operation[]
-
-        // #operation-line-
-        // #sub-operation-line-
-        // #operation-data-line-
-
-        // #sequent-line-
-        // deleteLine(line)                 - #delete-btn-line-
-        // HTML span-line-                  - #span-line-
-        // PLACEHOLDER placheholder-line-   - #placeholder-line-
-        // OperationData(this, line)        - #select-operation-line-
-        // NAME operation-data[line-1][]    - .data-line-
-        // changeAxiom(this, line)          - #select-axiom-line-
-        // name sub-operation[line-1]       - #select-axiom-line-
     
     }
 
@@ -374,87 +385,20 @@ function deleteLine(line){ // OK
 
 }
 
-function openMenu(){ // OK
+// Abre menu lateral.
+function openMenu(){ 
     document.getElementById("menu").style.width = "50px";
     document.getElementById("menu").style.borderRight = "solid 2px white";   
 }
 
-function closeMenu(){ // OK
+// Fecha menu lateral
+function closeMenu(){
     document.getElementById("menu").style.width = "0";
     document.getElementById("menu").style.borderRight = "";
 }
 
-function changeTheme(color){ // OK
+// Troca o tema do sistema.
+function changeTheme(color){ 
     localStorage.setItem("myColor", color);
     document.getElementById('theme').setAttribute('href', 'css/colors/'+color+'.css');
 }
-
-// (function ($) {
-//     "use strict";
-
-
-//     /*==================================================================
-//     [ Focus Contact2 ]*/
-//     $('.input100').each(function(){
-//         $(this).on('blur', function(){
-//             if($(this).val().trim() != "") {
-//                 $(this).addClass('has-val');
-//             }
-//             else {
-//                 $(this).removeClass('has-val');
-//             }
-//         })    
-//     })
-  
-  
-//     /*==================================================================
-//     [ Validate ]*/
-//     var name = $('.validate-input input[name="name"]');
-//     var email = $('.validate-input input[name="email"]');
-//     var message = $('.validate-input textarea[name="message"]');
-
-
-//     $('.validate-form').on('submit',function(){
-//         var check = true;
-
-//         if($(name).val().trim() == ''){
-//             showValidate(name);
-//             check=false;
-//         }
-
-
-//         // if($(email).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-//         //     showValidate(email);
-//         //     check=false;
-//         // }
-
-//         // if($(message).val().trim() == ''){
-//         //     showValidate(message);
-//         //     check=false;
-//         // }
-
-//         return check;
-//     });
-
-
-//     $('.validate-form .input100').each(function(){
-//         $(this).focus(function(){
-//            hideValidate(this);
-//        });
-//     });
-
-//     function showValidate(input) {
-//         var thisAlert = $(input).parent();
-
-//         $(thisAlert).addClass('alert-validate');
-//     }
-
-//     function hideValidate(input) {
-//         var thisAlert = $(input).parent();
-
-//         $(thisAlert).removeClass('alert-validate');
-//     }
-    
-    
-
-// })(jQuery);
